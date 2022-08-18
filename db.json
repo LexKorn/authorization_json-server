@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "id": 15,
+      "email": "xek@q.ru",
+      "password": "qwerty"
+    }
+  ],
+  "contacts": [
+    {
+      "id": 0,
+      "name": "First",
+      "phone": 132,
+      "owner": 15
+    }
+  ],
+  "register": [
+    {
+      "email": "qa@qw.ru",
+      "password": "$2a$05$PXwDfR7INHJ3TJmy0AsauOoMMmQMHZAfd8c8zBlHDPkcx1oXUp7SK",
+      "id": "56368cfc-6a2c-467d-888c-b639f99dc8a1"
+    },
+    {
+      "email": "zzz",
+      "password": "$2a$05$RMzJ5IamYR9Qg158fbmsyeR6z7ZcT5sraqSjav2SWP56uIyP.d.hW",
+      "id": "0931488f-be08-4563-8213-5569670d4410"
+    }
+  ],
+  "login": [
+    {
+      "email": "tuy",
+      "password": "$2a$05$EzkZhl9i1qz14FH5p8KYGe3lFM9Yyk3xwqsTI8GZYwfFJ9MXKdz5O",
+      "id": "2d243ec7-82b5-4a88-998d-cef313cf7ba6"
+    },
+    {
+      "email": "zzz",
+      "password": "123",
+      "id": "09101e8c-bd47-4c2e-9c26-6ff6376fa5db"
+    }
+  ]
+}
