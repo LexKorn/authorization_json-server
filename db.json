@@ -1,17 +1,52 @@
 {
-  "users": [
-    {
-      "id": 15,
-      "email": "xek@q.ru",
-      "password": "qwerty"
-    }
-  ],
   "contacts": [
     {
-      "id": 0,
-      "name": "First",
-      "phone": 132,
-      "owner": 15
+      "name": "Rabbit",
+      "phone": "007",
+      "id": "b2dfc08c-82a8-48c3-9597-1a208ea1e65b",
+      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1"
+    },
+    {
+      "name": "Wolf",
+      "phone": "456",
+      "id": "88d96fde-b9f9-4e12-85f8-c9a87ad60f08",
+      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242"
+    },
+    {
+      "name": "Hare",
+      "phone": "7985",
+      "id": "ec3ca62e-e10c-4923-b958-b0bce84e113a",
+      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1"
+    },
+    {
+      "name": "Deer",
+      "phone": "555",
+      "id": "d5c4272c-debb-4251-a318-f7001cb82e98",
+      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1"
+    },
+    {
+      "name": "Fox",
+      "phone": "666",
+      "id": "1191cf5c-119a-4eb1-a92d-45a87a44d85b",
+      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242"
+    },
+    {
+      "name": "Bear",
+      "phone": "777",
+      "id": "df0d3911-c42a-476c-bbad-e774595b3c55",
+      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242"
+    },
+    {
+      "name": "Lion",
+      "phone": "88888",
+      "id": "ff5ef451-5645-4022-8fb6-58980ae6ab44",
+      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad"
+    },
+    {
+      "name": "Tiger",
+      "phone": "0123",
+      "id": "58381cb5-0a6d-452e-a4e3-8d6aed56373a",
+      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad"
     }
   ],
   "register": [
@@ -24,18 +59,21 @@
       "email": "zzz",
       "password": "$2a$05$RMzJ5IamYR9Qg158fbmsyeR6z7ZcT5sraqSjav2SWP56uIyP.d.hW",
       "id": "0931488f-be08-4563-8213-5569670d4410"
-    }
-  ],
-  "login": [
-    {
-      "email": "tuy",
-      "password": "$2a$05$EzkZhl9i1qz14FH5p8KYGe3lFM9Yyk3xwqsTI8GZYwfFJ9MXKdz5O",
-      "id": "2d243ec7-82b5-4a88-998d-cef313cf7ba6"
     },
     {
-      "email": "zzz",
-      "password": "123",
-      "id": "09101e8c-bd47-4c2e-9c26-6ff6376fa5db"
+      "email": "t@q.ru",
+      "password": "$2a$05$/rhbXmTW0vI3QDdmKq0djeWnJvOn9nlAeDJRRxjFi4CKrxp5/znrW",
+      "id": "e670daad-9891-46ee-a9f1-c5c68fea6242"
+    },
+    {
+      "email": "zx@q.ru",
+      "password": "$2a$05$CKtD.elNHvadqZTILJLSWumrOsEwuaRWFN5f1CQPPsZ2j.feUK.0S",
+      "id": "6a40a066-8946-44d3-bd3b-08a73399d9af"
+    },
+    {
+      "email": "zaq@q.ru",
+      "password": "$2a$05$t/JTKKPxTBH2exVPvKZJFuYTF4wILodsNTLyDvUSNvkbIGNDggxP.",
+      "id": "9f22ed29-8a09-410d-b929-5338c4c5fbad"
     }
   ]
 }

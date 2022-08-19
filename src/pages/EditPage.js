@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { InputFields } from '../components/InputFields';
-import { BACK_URL } from '../config/default';
+import { BACK_URL } from '../config/index';
 import { AuthContext } from '../context/AuthContext';
 
 
@@ -10,7 +10,7 @@ export function EditPage() {
 	const { id } = useParams();
 	const [name, setName] = useState('');
 	const [phone, setPhone] = useState('');
-	const {token} = useContext(AuthContext);
+	const {userId} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -19,11 +19,11 @@ export function EditPage() {
     }, []);
 
 	useEffect(() => {
-		fetch(`${BACK_URL}/post/${id}`, {
+		fetch(`${BACK_URL}/contacts/${id}`, {
 			method: 'GET',
 			headers: {
 				'Content-type': 'application/json',
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${userId}`,
 			}
 		})
 			.then((json) => json.json())
@@ -32,17 +32,17 @@ export function EditPage() {
 				setPhone(data.phone);
 			})
 			.catch((err) => console.error(err))
-	}, [id, token]);
+	}, [id, userId]);
 
 	const editContactHandler = async () => {
 		try {
-			const response = await fetch(`${BACK_URL}/post-update`, {
+			const response = await fetch(`${BACK_URL}/contacts/${id}`, {
 				method: 'PUT',
 				headers: {
 					'Content-type': 'application/json',
-					'Authorization': `Bearer ${token}`
+					'Authorization': `Bearer ${userId}`
 				},
-				body: JSON.stringify({ name, phone, contactId: id }),
+				body: JSON.stringify({ name, phone, owner: userId }),
 			});
 
 			const data = await response.json();

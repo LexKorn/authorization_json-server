@@ -17,7 +17,7 @@ export const InputFields = ({name, setName, phone, setPhone, handler, title, but
                         <input 
                             placeholder="Телефон" 
                             id="phone" 
-                            type="text" 
+                            type="number" 
                             value={phone}
                             onChange={e => setPhone(e.target.value)} />
                         <label htmlFor='link'>Введите телефон</label>

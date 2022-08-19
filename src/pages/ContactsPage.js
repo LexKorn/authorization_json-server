@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
+import {v4 as uuidv4} from 'uuid';
 
 import { AuthContext } from '../context/AuthContext';
 import { InputFields } from '../components/InputFields';
 import { ContactsList } from '../components/ContactsList';
-import { BACK_URL } from '../config/default';
+import { useMessage } from '../hooks/message.hook';
+import { BACK_URL } from '../config/index';
 
 import './contactsPage.sass';
 
 
 export const ContactsPage = () => {
-    const {token} = useContext(AuthContext);
+    const {login, userId} = useContext(AuthContext);
+    const message = useMessage();
+
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [contacts, setContacts] = useState([]);
@@ -22,18 +26,16 @@ export const ContactsPage = () => {
     // POST contact
     const createContactHandler = async () => {
         if (!name.trim() || !phone.trim()) {
-			alert('Все поля обязательны для заполнения');
-			return console.error('Все поля обязательны для заполнения');
+			return message('Все поля обязательны для заполнения');
 		}
 
 		try {
-			const response = await fetch(`${BACK_URL}/post`, {
+			const response = await fetch(`${BACK_URL}/contacts`, {
 				method: 'POST',
 				headers: {
-					'Content-type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
+					'Content-type': 'application/json'
 				},
-				body: JSON.stringify({ name, phone })                
+				body: JSON.stringify({ name, phone, id: uuidv4(), owner: userId })                
 			});
 
 			const data = await response.json();
@@ -55,15 +57,14 @@ export const ContactsPage = () => {
     // GET contact
     useEffect(() => {
 		fetchContacts();
-	}, [token]);
+	}, [login]);
 
 	const fetchContacts = async () => {
-		fetch(`${BACK_URL}`, {
+		fetch(`${BACK_URL}/contacts?owner=${userId}`, {
             method: 'GET',
             headers: {
-                'Content-type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            },
+                'Content-type': 'application/json'
+            }
         })
 			.then((json) => json.json())
 			.then((data) => {
@@ -75,17 +76,15 @@ export const ContactsPage = () => {
 
     // DELETE contact
 	const removeContactHandler = (id) => {
-		fetch(`${BACK_URL}/post-delete/${id}`, {
+		fetch(`${BACK_URL}/contacts/${id}`, {
             method: 'DELETE',
             headers: {
-                'Content-type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            },			
+                'Content-type': 'application/json'
+            }			
 		})
 			.then((json) => json.json())
-			.then((data) => {
-				console.log(data);
-				fetchContacts();
+			.then(() => {
+				fetchContacts().filter(item => item.id !== id);
 			})
 			.catch((err) => console.error(err))
 	};

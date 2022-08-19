@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import bcrypt from 'bcryptjs';
-import * as Yup from 'yup';
 import {v4 as uuidv4} from 'uuid';
+import validator from 'validator';
 
 import { useHttp } from '../hooks/http.hook';
 import { useMessage } from '../hooks/message.hook';
 import { AuthContext } from '../context/AuthContext';
+import { BACK_URL } from '../config/index';
 
 
 export const AuthPage = () => {
@@ -26,32 +27,29 @@ export const AuthPage = () => {
         window.M.updateTextFields();
     }, []);
 
-    let validationSchema = Yup.object({
-        email: Yup.string()
-            .required('Обязательное поле')
-            .email('Неверный email'),
-        password: Yup.string()
-            .required('Обязательное поле')
-            .min(3, 'минимум 3 символа')
-    });
-
-    // type form = InferType<typeof validationSchema>;
-
     const changeHandler = event => {
         setForm({...form, [event.target.name]: event.target.value});
-        // setForm(validationSchema.validate({...form, [event.target.name]: event.target.value}));
     }
 
     const registerHandler = async () => {
         try {
-            const data = await request(`http://localhost:3001/register?email=${form.email}`);
+            if (!validator.isEmail(`${form.email}`)) {
+                return message('Некорректный ввод email');
+            }
+
+            // if (!validator.isStrongPassword(`${form.password}`)) 
+            if (!validator.isLength(`${form.password}`, {min: 5, max: 8})) {
+                return message('Пароль должен быть не менее 5 символов и не более 8 символов');
+            }
+
+            const data = await request(`${BACK_URL}/register?email=${form.email}`);
 
             if (data.length > 0) {
                 return message('Такой пользователь уже существует');
             }
             
             const hashedPassword = await bcrypt.hash(form.password, 5);
-            await request('http://localhost:3001/register', 'POST', {...form, password: hashedPassword, id: uuidv4()});
+            await request(`${BACK_URL}/register`, 'POST', {...form, password: hashedPassword, id: uuidv4()});
             message('Пользователь создан');
             
         } catch(err) {
@@ -61,7 +59,7 @@ export const AuthPage = () => {
 
     const loginHandler = async (req, res) => {
         try {
-            const data = await request(`http://localhost:3001/register?email=${form.email}`);
+            const data = await request(`${BACK_URL}/register?email=${form.email}`);
 
             if (data.length === 0) {
                 return message('Такого пользователья нет'); 
@@ -71,11 +69,8 @@ export const AuthPage = () => {
             if (!isMatch) {
                 return message('Неверный пароль, попробуйте снова');
             }
-            
-            // const user = await request('http://localhost:3001/login', 'POST', {...form, id: uuidv4()});
 
             auth.login(data[0].id);
-            message('Вход разрешен!');
             
         } catch(err) {
             message('При входе произошла ошибка(');
