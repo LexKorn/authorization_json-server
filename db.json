@@ -38,15 +38,9 @@
     },
     {
       "name": "Tiger",
-      "phone": "0123",
-      "id": "58381cb5-0a6d-452e-a4e3-8d6aed56373a",
-      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad"
-    },
-    {
-      "name": "Puma",
-      "phone": "999",
+      "phone": "012345",
       "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad",
-      "id": "a4ee9581-886f-442f-8b59-cb70c166eea1"
+      "id": "58381cb5-0a6d-452e-a4e3-8d6aed56373a"
     },
     {
       "name": "Lion",
@@ -77,6 +71,18 @@
       "phone": "777",
       "id": "4d3a4149-88e5-421b-8713-483f1f131c40",
       "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e"
+    },
+    {
+      "name": "Tig",
+      "phone": "222",
+      "id": "694509f1-b1f2-4e1c-8319-5f35749c21a6",
+      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad"
+    },
+    {
+      "name": "Tiga",
+      "phone": "999",
+      "id": "47a0e418-027b-4aa4-b851-e74595bef335",
+      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad"
     }
   ],
   "register": [

@@ -4,6 +4,7 @@ import {v4 as uuidv4} from 'uuid';
 import { AuthContext } from '../context/AuthContext';
 import { InputFields } from '../components/InputFields';
 import { ContactsList } from '../components/ContactsList';
+import { SearchPanel } from '../components/SearchPanel';
 import { useMessage } from '../hooks/message.hook';
 import { BACK_URL } from '../config/index';
 
@@ -17,6 +18,7 @@ export const ContactsPage = () => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [contacts, setContacts] = useState([]);
+    const [nameInput, setNameInput] = useState('');
 
     useEffect(() => {
         window.M.updateTextFields();
@@ -90,6 +92,19 @@ export const ContactsPage = () => {
 	};
 
 
+    // SEARCH contact
+    const searchContacts = (items, term) => {
+        if (term.length === 0) {
+            return items;
+        }
+
+        return items.filter(item => {
+            return item.name.toLowerCase().indexOf(term.toLowerCase()) > -1;
+        });
+    };
+
+    const visibleData = searchContacts(contacts, nameInput);
+
     return (
         <div>
             <InputFields 
@@ -100,7 +115,8 @@ export const ContactsPage = () => {
                 handler={createContactHandler} 
                 title='Создай контакт'
                 button='Создать' /> 
-            <ContactsList contacts={contacts} handler={removeContactHandler} />
+            <SearchPanel name={nameInput} setName={setNameInput} />
+            <ContactsList contacts={visibleData} handler={removeContactHandler} />
         </div>
     );
 };
