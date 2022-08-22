@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-export const ContactsList = ({contacts, handler}) => {
+export const ContactsList = ({contacts, handlerDelete, handlerUpdate}) => {
     return (
         <>
             <div className='row'>
@@ -14,9 +14,9 @@ export const ContactsList = ({contacts, handler}) => {
                             <div className="contact_icons">
                                 <NavLink to={`/post/${contact.id}`}>
                                     <i className="material-icons">mode_edit</i>
-                                </NavLink>    
+                                </NavLink>  
                                 <i className="material-icons" 
-                                    onClick={() => handler(contact.id)}>delete_forever
+                                    onClick={() => handlerDelete(contact.id)}>delete_forever
                                 </i>
                             </div>
                         </li>

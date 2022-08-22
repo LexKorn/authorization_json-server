@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {v4 as uuidv4} from 'uuid';
 
 import { AuthContext } from '../context/AuthContext';
@@ -7,6 +8,7 @@ import { ContactsList } from '../components/ContactsList';
 import { SearchPanel } from '../components/SearchPanel';
 import { useMessage } from '../hooks/message.hook';
 import { BACK_URL } from '../config/index';
+import { ADD_CONTACT, DELETE_CONTACT } from '../store/actions';
 
 import './contactsPage.sass';
 
@@ -19,12 +21,17 @@ export const ContactsPage = () => {
     const [phone, setPhone] = useState('');
     const [contacts, setContacts] = useState([]);
     const [nameInput, setNameInput] = useState('');
+    
+    const elems = useSelector(state => state.contacts);
+    const dispatch = useDispatch();
+
+    // console.log(elems);
 
     useEffect(() => {
         window.M.updateTextFields();
     }, []);
 
-
+/*
     // POST contact
     const createContactHandler = async () => {
         if (!name.trim() || !phone.trim()) {
@@ -48,14 +55,34 @@ export const ContactsPage = () => {
 
 			setName('');
 			setPhone('');
-            fetchContacts();
+            // fetchContacts();
 
 		} catch(err) {
 			console.error(err.message);
 		}
     };
+*/
+    // ADD contacts by Redux
+    const createContactHandler = () => {
+        if (!name.trim() || !phone.trim()) {
+			return message('Все поля обязательны для заполнения');
+		}
 
+        dispatch({
+            type: ADD_CONTACT,
+            payload: {
+                name, 
+                phone, 
+                id: uuidv4(), 
+                owner: userId
+            }
+        });
 
+        setName('');
+        setPhone('');
+    };
+
+/*
     // GET contact
     useEffect(() => {
 		fetchContacts();
@@ -74,8 +101,18 @@ export const ContactsPage = () => {
 			})
 			.catch((err) => console.error(err))
 	};
+*/
+    // GET contacts by Redux
+    const getContacts = (items, term) => {
+        return items.filter(item => {
+            return item.owner.indexOf(term) > -1;
+        });
+    };
+
+    const visibleElems = getContacts(elems, userId);
 
 
+/*
     // DELETE contact
 	const removeContactHandler = (id) => {
 		fetch(`${BACK_URL}/contacts/${id}`, {
@@ -85,11 +122,22 @@ export const ContactsPage = () => {
             }			
 		})
 			.then((json) => json.json())
-			.then(() => {
-				fetchContacts().filter(item => item.id !== id);
-			})
+			// .then(() => {
+			// 	fetchContacts().filter(item => item.id !== id);
+			// })
 			.catch((err) => console.error(err))
 	};
+*/
+
+    // DELETE contact by Redux
+    const removeContactHandler = (id) => {
+        dispatch({
+            type: DELETE_CONTACT,
+            payload: {
+                id: id
+            }
+        });
+    };
 
 
     // SEARCH contact
@@ -103,7 +151,7 @@ export const ContactsPage = () => {
         });
     };
 
-    const visibleData = searchContacts(contacts, nameInput);
+    const visibleData = searchContacts(visibleElems, nameInput);
 
     return (
         <div>
@@ -116,7 +164,9 @@ export const ContactsPage = () => {
                 title='Создай контакт'
                 button='Создать' /> 
             <SearchPanel name={nameInput} setName={setNameInput} />
-            <ContactsList contacts={visibleData} handler={removeContactHandler} />
+            <ContactsList 
+                contacts={visibleData} 
+                handlerDelete={removeContactHandler} />
         </div>
     );
 };
