@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {v4 as uuidv4} from 'uuid';
 
@@ -6,9 +6,11 @@ import { AuthContext } from '../context/AuthContext';
 import { InputFields } from '../components/InputFields';
 import { ContactsList } from '../components/ContactsList';
 import { SearchPanel } from '../components/SearchPanel';
+import {Loader} from '../components/Loader';
 import { useMessage } from '../hooks/message.hook';
 import { BACK_URL } from '../config/index';
-import { ADD_CONTACT, DELETE_CONTACT } from '../store/actions';
+import {useHttp} from '../hooks/http.hook';
+import { ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT, CONTACTS_FETCHING, CONTACTS_FETCHED, CONTACTS_FETCHING_ERROR } from '../store/actions';
 
 import './contactsPage.sass';
 
@@ -16,13 +18,16 @@ import './contactsPage.sass';
 export const ContactsPage = () => {
     const {login, userId} = useContext(AuthContext);
     const message = useMessage();
+    const {request} = useHttp();
 
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [contacts, setContacts] = useState([]);
     const [nameInput, setNameInput] = useState('');
     
-    const elems = useSelector(state => state.contacts);
+    const {contacts: elems, contactsLoadingStatus} = useSelector(state => state);
+    // const elems = useSelector(state => state.contacts.contacts);
+    // const contactsLoadingStatus = useSelector(state => state.contactsLoadingStatus);
     const dispatch = useDispatch();
 
     // console.log(elems);
@@ -102,6 +107,18 @@ export const ContactsPage = () => {
 			.catch((err) => console.error(err))
 	};
 */
+
+    // DELETE contact by Redux
+    const removeContactHandler = (id) => {
+        dispatch({
+            type: DELETE_CONTACT,
+            payload: {
+                id: id
+            }
+        });
+    };
+
+
     // GET contacts by Redux
     const getContacts = (items, term) => {
         return items.filter(item => {
@@ -109,9 +126,52 @@ export const ContactsPage = () => {
         });
     };
 
-    const visibleElems = getContacts(elems, userId);
+    // const visibleElems = getContacts(elems, userId);
+    // let visibleElems;
+    const visibleElems = useRef();
 
+    useEffect(() => {
+        dispatch(CONTACTS_FETCHING());
+        request("http://localhost:3001/contacts")
+            .then(data => dispatch(CONTACTS_FETCHED(data)))
+            // .then(data => console.log(data.payload))
+            // .then(data => {
+            //     // const visibleElems = getContacts(data.payload, userId);
+            //     visibleElems.current = getContacts(data.payload, userId);
+            //     console.log(visibleElems.current);
+            // })
+            // .then(data => {
+            //     setContacts(data.payload);
+            //     console.log(contacts);
+            // }) 
+            .catch(() => dispatch(CONTACTS_FETCHING_ERROR()))
+        
+        
+        // eslint-disable-next-line
+    }, []);
 
+    if (contactsLoadingStatus === 'loading') {
+        return <Loader />
+    } if (contactsLoadingStatus === 'error') {
+        return <h5 className='center' >Ошибка загрузки</h5>
+    }
+
+    console.log(elems);
+
+    const renderContactsList = (arr) => {
+        if (arr.length === 0) {
+            return <h5 className='center' >Контактов пока нет</h5>
+        }
+
+        return arr.map(({id, ...props}) => {
+            return <ContactsList key={id} handlerDelete={removeContactHandler} />
+        });
+    };
+
+    const elements = renderContactsList(elems);
+
+    // console.log(contacts);
+    // console.log(visibleElems.current);
 /*
     // DELETE contact
 	const removeContactHandler = (id) => {
@@ -129,29 +189,20 @@ export const ContactsPage = () => {
 	};
 */
 
-    // DELETE contact by Redux
-    const removeContactHandler = (id) => {
-        dispatch({
-            type: DELETE_CONTACT,
-            payload: {
-                id: id
-            }
-        });
-    };
-
+    
 
     // SEARCH contact
-    const searchContacts = (items, term) => {
-        if (term.length === 0) {
-            return items;
-        }
+    // const searchContacts = (items, term) => {
+    //     if (term.length === 0) {
+    //         return items;
+    //     }
 
-        return items.filter(item => {
-            return item.name.toLowerCase().indexOf(term.toLowerCase()) > -1;
-        });
-    };
+    //     return items.filter(item => {
+    //         return item.name.toLowerCase().indexOf(term.toLowerCase()) > -1;
+    //     });
+    // };
 
-    const visibleData = searchContacts(visibleElems, nameInput);
+    // const visibleData = searchContacts(visibleElems, nameInput);
 
     return (
         <div>
@@ -164,9 +215,11 @@ export const ContactsPage = () => {
                 title='Создай контакт'
                 button='Создать' /> 
             <SearchPanel name={nameInput} setName={setNameInput} />
-            <ContactsList 
-                contacts={visibleData} 
-                handlerDelete={removeContactHandler} />
+            {/* <ContactsList 
+                // contacts={visibleData} 
+                contacts={contacts} 
+                handlerDelete={removeContactHandler} /> */}
+            {elements}
         </div>
     );
 };
