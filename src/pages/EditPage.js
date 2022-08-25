@@ -35,6 +35,10 @@ export function EditPage() {
 	}, [id, userId]);
 
 	const editContactHandler = async () => {
+		if (!name.trim() || !phone.trim()) {
+			return message('Все поля обязательны для заполнения');
+		}
+		
 		try {
 			const response = await fetch(`${BACK_URL}/contacts/${id}`, {
 				method: 'PUT',
