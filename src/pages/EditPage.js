@@ -4,13 +4,16 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { InputFields } from '../components/InputFields';
 import { BACK_URL } from '../config/index';
 import { AuthContext } from '../context/AuthContext';
+import { useMessage } from '../hooks/message.hook';
 
 
 export function EditPage() {
 	const { id } = useParams();
-	const [name, setName] = useState('');
-	const [phone, setPhone] = useState('');
 	const {userId} = useContext(AuthContext);
+	const message = useMessage();
+
+	const [name, setName] = useState('');
+	const [phone, setPhone] = useState('');	
 
     const navigate = useNavigate();
 

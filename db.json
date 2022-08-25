@@ -7,12 +7,6 @@
       "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1"
     },
     {
-      "name": "Wolf",
-      "phone": "456",
-      "id": "88d96fde-b9f9-4e12-85f8-c9a87ad60f08",
-      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242"
-    },
-    {
       "name": "Hare",
       "phone": "444",
       "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
@@ -23,24 +17,6 @@
       "phone": "555",
       "id": "d5c4272c-debb-4251-a318-f7001cb82e98",
       "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1"
-    },
-    {
-      "name": "Fox",
-      "phone": "666",
-      "id": "1191cf5c-119a-4eb1-a92d-45a87a44d85b",
-      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242"
-    },
-    {
-      "name": "Bear",
-      "phone": "777",
-      "id": "df0d3911-c42a-476c-bbad-e774595b3c55",
-      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242"
-    },
-    {
-      "name": "Tiger",
-      "phone": "012345",
-      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad",
-      "id": "58381cb5-0a6d-452e-a4e3-8d6aed56373a"
     },
     {
       "name": "Lion",
@@ -73,16 +49,34 @@
       "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e"
     },
     {
-      "name": "Tiga",
-      "phone": "99900",
-      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad",
-      "id": "47a0e418-027b-4aa4-b851-e74595bef335"
-    },
-    {
       "name": "Puma",
       "phone": "789645",
       "id": "eca7d69d-6db4-4aa8-88c0-2005d98f04bf",
       "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad"
+    },
+    {
+      "name": "Bear",
+      "phone": "555",
+      "id": "0d34ab5d-0499-4527-87ad-dd81fc4c68b6",
+      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242"
+    },
+    {
+      "name": "Tiger",
+      "phone": "222",
+      "id": "bb186ab8-c0dd-4e8b-b435-238c8311cd95",
+      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad"
+    },
+    {
+      "name": "Cheeken",
+      "phone": "123",
+      "id": "f2984f0a-74f2-4754-8598-ac0a762d8786",
+      "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e"
+    },
+    {
+      "name": "Cow",
+      "phone": "222",
+      "id": "76a65d9a-bfb0-46ac-a20e-502bd603c790",
+      "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e"
     }
   ],
   "register": [
