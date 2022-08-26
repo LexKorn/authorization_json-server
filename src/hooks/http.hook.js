@@ -20,6 +20,7 @@ export const useHttp = () => {
 
             setLoading(false);
             return data;
+            
         } catch(err) {
             setLoading(false);
             setError(err.message);

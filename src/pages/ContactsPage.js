@@ -9,6 +9,7 @@ import { SearchPanel } from '../components/SearchPanel';
 import { Loader } from '../components/Loader';
 import { useMessage } from '../hooks/message.hook';
 import { BACK_URL } from '../config/index';
+import {useHttp} from '../hooks/http.hook';
 import {CONTACTS_FETCHING, CONTACTS_FETCHED, CONTACTS_FETCHING_ERROR, ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT} from '../actions';
 
 import './contactsPage.sass';
@@ -17,13 +18,13 @@ import './contactsPage.sass';
 export const ContactsPage = () => {
     const {login, userId} = useContext(AuthContext);
     const message = useMessage();
+    const {request} = useHttp();
 
     const {contacts: elems, contactsLoadingStatus} = useSelector(state => state);
     const dispatch = useDispatch();
 
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
-    // const [contacts, setContacts] = useState([]);
     const [nameInput, setNameInput] = useState('');
 
     useEffect(() => {
@@ -38,13 +39,7 @@ export const ContactsPage = () => {
 
 	const fetchContacts = async () => {
         dispatch(CONTACTS_FETCHING());
-		fetch(`${BACK_URL}/contacts?owner=${userId}`, {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json'
-            }
-        })
-			.then((json) => json.json())
+        request(`${BACK_URL}/contacts?owner=${userId}`)
             .then(data => dispatch(CONTACTS_FETCHED(data)))
             .catch(() => dispatch(CONTACTS_FETCHING_ERROR()));
 	};
@@ -70,42 +65,19 @@ export const ContactsPage = () => {
 			return message('Все поля обязательны для заполнения');
 		}
 
-		try {
-			const response = await fetch(`${BACK_URL}/contacts`, {
-				method: 'POST',
-				headers: {
-					'Content-type': 'application/json'
-				},
-				body: JSON.stringify({ name, phone, id: uuidv4(), owner: userId })                
-			});
+        request(`${BACK_URL}/contacts`, 'POST', { name, phone, id: uuidv4(), owner: userId })
+            .then(data => dispatch(ADD_CONTACT(data)))
+            .catch((err) => console.error(err.message));
 
-			const data = await response.json();
-
-			if (response.status !== 200) {
-				console.error(data);
-			}
-
-            // dispatch(ADD_CONTACT(data));
-
-			setName('');
-			setPhone('');
-            fetchContacts();
-
-		} catch(err) {
-			console.error(err.message);
-		}
+        setName('');
+        setPhone('');
+        fetchContacts();
     };
 
 
     // DELETE contact
 	const removeContactHandler = (id) => {
-		fetch(`${BACK_URL}/contacts/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-type': 'application/json'
-            }			
-		})
-			.then((json) => json.json())
+        request(`${BACK_URL}/contacts/${id}`, 'DELETE')
             .then(dispatch(DELETE_CONTACT(id)))
 	};
 
@@ -136,7 +108,6 @@ export const ContactsPage = () => {
                 title='Создай контакт'
                 button='Создать' /> 
             <SearchPanel name={nameInput} setName={setNameInput} />
-            {/* <ContactsList contacts={visibleData} handler={removeContactHandler} /> */}
             {elements}
         </div>
     );
