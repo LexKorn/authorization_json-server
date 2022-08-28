@@ -34,15 +34,24 @@ const reducer = (state = initialState, action) => {
             }
         }
         case 'UPDATE_CONTACT': {
-            const {id, name, phone} = action.payload;
-            return [
-                ...state.map(elem => {
-                    if (elem.id === id) {
-                        return {...elem, name, phone}
-                    }
-                    return elem
-                })
-            ]
+            const newContactsList = state.map(item => {
+                if (item.id === action.payload.id) {
+                    return action.payload
+                }
+            });
+            return {
+                ...state,
+                contacts: newContactsList
+            }
+            // const {id, name, phone} = action.payload;
+            // return [
+            //     ...state.map(item => {
+            //         if (item.id === id) {
+            //             return {...item, name, phone}
+            //         }
+            //         return item
+            //     })
+            // ]
         }
         case 'DELETE_CONTACT': {
             // const {id} = action.payload;

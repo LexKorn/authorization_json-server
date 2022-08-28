@@ -35,7 +35,7 @@ export const ContactsPage = () => {
     // GET contact
     useEffect(() => {
 		fetchContacts();
-	}, [login]);
+	}, [userId]);
 
 	const fetchContacts = async () => {
         dispatch(CONTACTS_FETCHING());
@@ -67,7 +67,7 @@ export const ContactsPage = () => {
 
         request(`${BACK_URL}/contacts`, 'POST', { name, phone, id: uuidv4(), owner: userId })
             .then(data => dispatch(ADD_CONTACT(data)))
-            .catch((err) => console.error(err.message));
+            .catch(err => console.error(err.message));
 
         setName('');
         setPhone('');

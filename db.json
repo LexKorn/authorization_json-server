@@ -2,21 +2,21 @@
   "contacts": [
     {
       "name": "Rabbit",
-      "phone": "007",
-      "id": "b2dfc08c-82a8-48c3-9597-1a208ea1e65b",
-      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1"
+      "phone": "5",
+      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
+      "id": "b2dfc08c-82a8-48c3-9597-1a208ea1e65b"
     },
     {
-      "name": "Lion",
-      "phone": "456",
-      "id": "876dcc4a-3943-4f8d-a22c-6fa9209f1b0c",
-      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad"
+      "name": "Lionrty54y",
+      "phone": "0075645",
+      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad",
+      "id": "876dcc4a-3943-4f8d-a22c-6fa9209f1b0c"
     },
     {
       "name": "Tiger",
-      "phone": "222",
-      "id": "bb186ab8-c0dd-4e8b-b435-238c8311cd95",
-      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad"
+      "phone": "111",
+      "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad",
+      "id": "bb186ab8-c0dd-4e8b-b435-238c8311cd95"
     },
     {
       "name": "Bull",
@@ -50,33 +50,32 @@
     },
     {
       "name": "Fox",
-      "phone": "798",
-      "id": "2a3f1cbb-9117-4ef8-b7a8-b7f8f6748dd3",
-      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242"
-    },
-    {
-      "name": "Wolf",
-      "phone": "777",
-      "id": "6ac8062b-9afb-45be-a7ae-719549769214",
-      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242"
-    },
-    {
-      "name": "Boar",
-      "phone": "987",
-      "id": "69080892-bb8e-4ce4-91be-47d012e22eff",
-      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242"
+      "phone": "222",
+      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242",
+      "id": "6ac8062b-9afb-45be-a7ae-719549769214"
     },
     {
       "name": "Squirrel",
-      "phone": "555",
-      "id": "e4e871ea-3572-44e9-8e16-4b1585ab4974",
-      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1"
+      "phone": "777",
+      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
+      "id": "e4e871ea-3572-44e9-8e16-4b1585ab4974"
     },
     {
       "name": "Beaver",
-      "phone": "222",
-      "id": "11c1a5ea-6e4f-4d5d-b748-4a45b38ab715",
-      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1"
+      "phone": "111",
+      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
+      "id": "11c1a5ea-6e4f-4d5d-b748-4a45b38ab715"
+    },
+    {
+      "name": "Fox",
+      "phone": "999",
+      "id": "612f4c5c-eae1-4d47-a48d-c2ad0bb9039b"
+    },
+    {
+      "name": "BEAR",
+      "phone": "444",
+      "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242",
+      "id": "aae7b2f8-89d2-451c-b873-7eedaec75dc9"
     }
   ],
   "register": [
