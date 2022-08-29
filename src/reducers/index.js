@@ -1,5 +1,3 @@
-// import {ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT, CONTACTS_FETCHING, CONTACTS_FETCHED, CONTACTS_FETCHING_ERROR} from './actions';
-
 const initialState = {
     contacts: [],
     contactsLoadingStatus: 'idle'
@@ -33,34 +31,20 @@ const reducer = (state = initialState, action) => {
                 contacts: newContactsList
             }
         }
-        case 'UPDATE_CONTACT': {
-            
+        case 'UPDATE_CONTACT': {            
             const {id, name, phone} = action.payload;
             const newContactsList = state.contacts.map(item => {
                 if (item.id === id) {
                     return {...item, name, phone}
                 }
+                return item
             });
             return {
                 ...state,
                 contacts: newContactsList
             }
-            
-           /*
-            const {id, name, phone} = action.payload;
-            return [
-                ...state.map(item => {
-                    if (item.id === id) {
-                        return {...item, name, phone}
-                    }
-                    return item
-                })
-            ]
-            */
         }
         case 'DELETE_CONTACT': {
-            // const {id} = action.payload;
-            // return [...state.filter(elem => elem.id !== id)]
             const newContactsList = state.contacts.filter(item => item.id !== action.payload);
             return {
                 ...state,

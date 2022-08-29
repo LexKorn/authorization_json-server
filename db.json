@@ -14,33 +14,27 @@
     },
     {
       "name": "Bull",
-      "phone": "1234",
-      "id": "f69c14ae-0c69-46f3-87ae-be334fa738cb",
-      "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e"
+      "phone": "777",
+      "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e",
+      "id": "f69c14ae-0c69-46f3-87ae-be334fa738cb"
     },
     {
       "name": "Horse",
-      "phone": "555",
-      "id": "87d203df-c832-462a-917a-d5d549240dd3",
-      "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e"
+      "phone": "13",
+      "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e",
+      "id": "87d203df-c832-462a-917a-d5d549240dd3"
     },
     {
       "name": "Cow",
-      "phone": "123",
-      "id": "7064ab2d-5217-47cc-9c91-9af3829d4995",
-      "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e"
+      "phone": "666",
+      "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e",
+      "id": "7064ab2d-5217-47cc-9c91-9af3829d4995"
     },
     {
       "name": "Cheetah",
       "phone": "222",
       "id": "5c2b79fc-1ca2-4ac7-ab85-c1968e73dc0e",
       "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad"
-    },
-    {
-      "name": "Chicken",
-      "phone": "555",
-      "id": "5fa15a68-1fec-447b-8e08-b995edd85aa5",
-      "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e"
     },
     {
       "name": "Fox",
@@ -61,21 +55,27 @@
     },
     {
       "name": "Deer",
-      "phone": "222",
-      "id": "9d253a99-bf9b-4cd6-9cc9-b279eddf1274",
-      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1"
+      "phone": "0888",
+      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
+      "id": "9d253a99-bf9b-4cd6-9cc9-b279eddf1274"
     },
     {
       "name": "Elk",
-      "phone": "1",
+      "phone": "100500",
       "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
       "id": "39ada0fd-dfff-4699-bfd4-cde07ef47e66"
     },
     {
-      "name": "Hare",
-      "phone": "77715",
+      "name": "Chicken",
+      "phone": "555",
+      "id": "59a743d6-07eb-447e-af01-11dff3a7e250",
+      "owner": "2072afb1-887c-4076-b7c2-33881ef03f5e"
+    },
+    {
+      "name": "Rabbit",
+      "phone": "666",
       "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
-      "id": "a40de83b-1b3b-4c8f-b2d3-6de3a4e7c2b5"
+      "id": "74d9d037-0956-4858-8688-6e06ff34c9a1"
     }
   ],
   "register": [

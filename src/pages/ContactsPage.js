@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {v4 as uuidv4} from 'uuid';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,13 +10,13 @@ import { Loader } from '../components/Loader';
 import { useMessage } from '../hooks/message.hook';
 import { BACK_URL } from '../config/index';
 import {useHttp} from '../hooks/http.hook';
-import {CONTACTS_FETCHING, CONTACTS_FETCHED, CONTACTS_FETCHING_ERROR, ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT} from '../actions';
+import {CONTACTS_FETCHING, CONTACTS_FETCHED, CONTACTS_FETCHING_ERROR, ADD_CONTACT, DELETE_CONTACT} from '../actions';
 
 import './contactsPage.sass';
 
 
 export const ContactsPage = () => {
-    const {login, userId} = useContext(AuthContext);
+    const {userId} = useContext(AuthContext);
     const message = useMessage();
     const {request} = useHttp();
 

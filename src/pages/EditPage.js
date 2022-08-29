@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { InputFields } from '../components/InputFields';
 import { BACK_URL } from '../config/index';
@@ -16,7 +16,6 @@ export function EditPage() {
 	const message = useMessage();
 	const {request} = useHttp();
 
-	const elems = useSelector(state => state.contacts);
     const dispatch = useDispatch();
 
 	const [name, setName] = useState('');
@@ -31,20 +30,6 @@ export function EditPage() {
 				setPhone(data.phone);
 			})
 			.catch((err) => console.error(err))
-
-		// fetch(`${BACK_URL}/contacts/${id}`, {
-		// 	method: 'GET',
-		// 	headers: {
-		// 		'Content-type': 'application/json',
-        //         'Authorization': `Bearer ${userId}`,
-		// 	}
-		// })
-		// 	.then((json) => json.json())
-		// 	.then((data) => {
-		// 		setName(data.name);
-		// 		setPhone(data.phone);
-		// 	})
-		// 	.catch((err) => console.error(err))
 	}, []);
 
 	const editContactHandler = async () => {
@@ -59,28 +44,6 @@ export function EditPage() {
 			.catch(err => console.error(err.message));
 
 		navigate('/');
-			/*
-		try {
-			const response = await fetch(`${BACK_URL}/contacts/${id}`, {
-				method: 'PUT',
-				headers: {
-					'Content-type': 'application/json',
-					'Authorization': `Bearer ${userId}`
-				},
-				body: JSON.stringify({ name, phone, owner: userId }),
-			});
-
-			const data = await response.json();
-
-			if (response.status !== 200) {
-				return console.error(data);
-			}
-            navigate('/');
-
-		} catch (err) {
-			console.error(err);
-		}
-		*/
 	};
 
 	return (
