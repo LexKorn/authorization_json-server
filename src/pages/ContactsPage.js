@@ -27,15 +27,10 @@ export const ContactsPage = () => {
     const [phone, setPhone] = useState('');
     const [nameInput, setNameInput] = useState('');
 
-    useEffect(() => {
-        window.M.updateTextFields();
-    }, []);
-
-
     // GET contact
     useEffect(() => {
 		fetchContacts();
-	}, [userId]);
+	}, []);
 
 	const fetchContacts = async () => {
         dispatch(CONTACTS_FETCHING());

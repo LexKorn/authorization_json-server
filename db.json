@@ -1,12 +1,6 @@
 {
   "contacts": [
     {
-      "name": "Rabbit",
-      "phone": "5",
-      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
-      "id": "b2dfc08c-82a8-48c3-9597-1a208ea1e65b"
-    },
-    {
       "name": "Lionrty54y",
       "phone": "0075645",
       "owner": "9f22ed29-8a09-410d-b929-5338c4c5fbad",
@@ -55,18 +49,6 @@
       "id": "6ac8062b-9afb-45be-a7ae-719549769214"
     },
     {
-      "name": "Squirrel",
-      "phone": "777",
-      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
-      "id": "e4e871ea-3572-44e9-8e16-4b1585ab4974"
-    },
-    {
-      "name": "Beaver",
-      "phone": "111",
-      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
-      "id": "11c1a5ea-6e4f-4d5d-b748-4a45b38ab715"
-    },
-    {
       "name": "Fox",
       "phone": "999",
       "id": "612f4c5c-eae1-4d47-a48d-c2ad0bb9039b"
@@ -76,6 +58,24 @@
       "phone": "444",
       "owner": "e670daad-9891-46ee-a9f1-c5c68fea6242",
       "id": "aae7b2f8-89d2-451c-b873-7eedaec75dc9"
+    },
+    {
+      "name": "Deer",
+      "phone": "222",
+      "id": "9d253a99-bf9b-4cd6-9cc9-b279eddf1274",
+      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1"
+    },
+    {
+      "name": "Elk",
+      "phone": "1",
+      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
+      "id": "39ada0fd-dfff-4699-bfd4-cde07ef47e66"
+    },
+    {
+      "name": "Hare",
+      "phone": "77715",
+      "owner": "56368cfc-6a2c-467d-888c-b639f99dc8a1",
+      "id": "a40de83b-1b3b-4c8f-b2d3-6de3a4e7c2b5"
     }
   ],
   "register": [

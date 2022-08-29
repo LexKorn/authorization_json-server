@@ -1,4 +1,10 @@
+import { useEffect } from 'react';
+
 export const InputFields = ({name, setName, phone, setPhone, handler, title, button}) => {
+    useEffect(() => {
+        window.M.updateTextFields();
+    }, []);
+
     return (
         <>
             <div className='row'>

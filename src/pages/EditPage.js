@@ -25,10 +25,6 @@ export function EditPage() {
     const navigate = useNavigate();
 
 	useEffect(() => {
-        window.M.updateTextFields();
-    }, []);
-
-	useEffect(() => {
 		request(`${BACK_URL}/contacts/${id}`)
 			.then((data) => {
 				setName(data.name);
@@ -49,7 +45,7 @@ export function EditPage() {
 		// 		setPhone(data.phone);
 		// 	})
 		// 	.catch((err) => console.error(err))
-	}, [id]);
+	}, []);
 
 	const editContactHandler = async () => {
 		if (!name.trim() || !phone.trim()) {
