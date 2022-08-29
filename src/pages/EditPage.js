@@ -7,7 +7,7 @@ import { BACK_URL } from '../config/index';
 import { AuthContext } from '../context/AuthContext';
 import { useMessage } from '../hooks/message.hook';
 import { useHttp } from '../hooks/http.hook';
-import { UPDATE_CONTACT } from '../actions';
+import { UPDATE_CONTACT } from '../actions/contactsActions';
 
 
 export function EditPage() {

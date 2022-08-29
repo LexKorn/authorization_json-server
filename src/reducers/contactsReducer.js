@@ -3,7 +3,7 @@ const initialState = {
     contactsLoadingStatus: 'idle'
 };
 
-const reducer = (state = initialState, action) => {
+const contactsReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'CONTACTS_FETCHING': {
             return {
@@ -25,10 +25,9 @@ const reducer = (state = initialState, action) => {
             }
         }
         case 'ADD_CONTACT': {
-            const newContactsList = [...state.contacts, action.payload];
             return {
                 ...state,
-                contacts: newContactsList
+                contacts: [...state.contacts, action.payload]
             }
         }
         case 'UPDATE_CONTACT': {            
@@ -45,14 +44,13 @@ const reducer = (state = initialState, action) => {
             }
         }
         case 'DELETE_CONTACT': {
-            const newContactsList = state.contacts.filter(item => item.id !== action.payload);
             return {
                 ...state,
-                contacts: newContactsList
+                contacts: state.contacts.filter(item => item.id !== action.payload)
             }
         }
         default: return state
     }
 };
 
-export default reducer;
+export default contactsReducer;

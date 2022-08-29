@@ -10,7 +10,7 @@ import { Loader } from '../components/Loader';
 import { useMessage } from '../hooks/message.hook';
 import { BACK_URL } from '../config/index';
 import {useHttp} from '../hooks/http.hook';
-import {CONTACTS_FETCHING, CONTACTS_FETCHED, CONTACTS_FETCHING_ERROR, ADD_CONTACT, DELETE_CONTACT} from '../actions';
+import {CONTACTS_FETCHING, CONTACTS_FETCHED, CONTACTS_FETCHING_ERROR, ADD_CONTACT, DELETE_CONTACT} from '../actions/contactsActions';
 
 import './contactsPage.sass';
 
@@ -20,7 +20,7 @@ export const ContactsPage = () => {
     const message = useMessage();
     const {request} = useHttp();
 
-    const {contacts: elems, contactsLoadingStatus} = useSelector(state => state);
+    const {contacts: elems, contactsLoadingStatus} = useSelector(state => state.contactsReducer);
     const dispatch = useDispatch();
 
     const [name, setName] = useState('');

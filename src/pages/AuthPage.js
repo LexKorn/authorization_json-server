@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import bcrypt from 'bcryptjs';
 import {v4 as uuidv4} from 'uuid';
 import validator from 'validator';
+import { useDispatch } from 'react-redux';
 
 import { useHttp } from '../hooks/http.hook';
 import { useMessage } from '../hooks/message.hook';
 import { AuthContext } from '../context/AuthContext';
 import { AuthInputFields } from '../components/AuthInputFields';
 import { BACK_URL } from '../config/index';
+import {AUTH_FETCHING, AUTH_FETCHED, AUTH_FETCHING_ERROR, ADD_AUTH} from '../actions/authActions';
 
 
 export const AuthPage = () => {
@@ -19,14 +21,12 @@ export const AuthPage = () => {
         password: ''
     });
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
         message(error);
         clearError();
     }, [error, message, clearError]);
-
-    useEffect(() => {
-        window.M.updateTextFields();
-    }, []);
 
     const changeHandler = event => {
         setForm({...form, [event.target.name]: event.target.value});
@@ -43,15 +43,23 @@ export const AuthPage = () => {
                 return message('Пароль должен быть не менее 5 символов и не более 8 символов');
             }
 
-            const data = await request(`${BACK_URL}/register?email=${form.email}`);
+            dispatch(AUTH_FETCHING());
 
-            if (data.length > 0) {
+            const data = await request(`${BACK_URL}/register?email=${form.email}`)
+                .then(data => dispatch(AUTH_FETCHED(data)))
+                .catch(() => dispatch(AUTH_FETCHING_ERROR()));
+
+            if (data.payload.length > 0) {
                 return message('Такой пользователь уже существует');
             }
             
             const hashedPassword = await bcrypt.hash(form.password, 5);
-            await request(`${BACK_URL}/register`, 'POST', {...form, password: hashedPassword, id: uuidv4()});
-            message('Пользователь создан');
+            await request(`${BACK_URL}/register`, 'POST', {...form, password: hashedPassword, id: uuidv4()})
+                .then(data => {
+                    dispatch(ADD_AUTH(data));
+                    message('Пользователь создан');
+                })
+                .catch(err => console.log(err.message))          
             
         } catch(err) {
             message('При регистрации произошла ошибка(');
@@ -96,15 +104,13 @@ export const AuthPage = () => {
                                 style={{marginRight: 10}}  
                                 onClick={loginHandler}
                                 disabled={loading}
-                            >  
-                                    Войти
+                                >Войти
                             </button>                              
                             <button 
                                 className='btn grey lighten-1 black-text'
                                 onClick={registerHandler}
                                 disabled={loading}
-                            >
-                                    Регистрация
+                                >Регистрация
                             </button>
                         </div>
                 </div>
